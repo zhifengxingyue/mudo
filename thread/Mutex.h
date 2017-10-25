@@ -13,6 +13,7 @@
 #include <boost/noncopyable.hpp>
 #include <assert.h>
 #include <pthread.h>
+#include <iostream>
 
 namespace muduo
 {
@@ -24,12 +25,14 @@ class MutexLock : boost::noncopyable
     : holder_(0)
   {
     pthread_mutex_init(&mutex_, NULL);
+    std::cout << "mutexlock init" << std::endl;
   }
 
   ~MutexLock()
   {
     assert(holder_ == 0);
     pthread_mutex_destroy(&mutex_);
+    std::cout << "mutexlock destroy" << std::endl;
   }
 
   bool isLockedByThisThread()

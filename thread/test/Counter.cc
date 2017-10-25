@@ -1,7 +1,7 @@
 #include "../Mutex.h"
 using muduo::MutexLock;
 using muduo::MutexLockGuard;
-
+#include <iostream>
 // A thread-safe counter
 class Counter : boost::noncopyable
 {
@@ -57,4 +57,7 @@ int main()
 {
   Counter c;
   c.getAndIncrease();
+//  #ifdef test_pr
+  std::cout << "hellowo343rld" <<std::endl;
+ // #endif
 }

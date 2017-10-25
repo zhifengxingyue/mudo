@@ -16,6 +16,7 @@ class Counter : boost::noncopyable
   friend void swap(Counter& a, Counter& b);
 
  private:
+  /* 定义互斥量 */
   mutable MutexLock mutex_;
   int64_t value_;
 };
@@ -30,6 +31,7 @@ int64_t Counter::getAndIncrease()
 {
   MutexLockGuard lock(mutex_);
   int64_t ret = value_++;
+  std::cout << "Counter::getAndIncrease" <<std::endl;
   return ret;
 }
 
@@ -59,5 +61,7 @@ int main()
   c.getAndIncrease();
 //  #ifdef test_pr
   std::cout << "hellowo343rld" <<std::endl;
+
+
  // #endif
 }

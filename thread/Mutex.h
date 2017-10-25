@@ -76,11 +76,13 @@ class MutexLockGuard : boost::noncopyable
   explicit MutexLockGuard(MutexLock& mutex) : mutex_(mutex)
   {
     mutex_.lock();
+    std::cout << "MutexLockGuard init" << std::endl;
   }
 
   ~MutexLockGuard()
   {
     mutex_.unlock();
+    std::cout << "MutexLockGuard destroy" << std::endl;
   }
 
  private:
